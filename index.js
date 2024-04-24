@@ -228,10 +228,18 @@ function toggleModal(show, modal = elements.newTaskModalWindow) {
 function addTask(event) {
   event.preventDefault(); 
 
+  const title = event.target.querySelector("#title-input").value;
+  const description = event.target.querySelector("    #desc-input").value; 
+  const status = event.target.querySelector("#select-status").value;
+
   //Assign user input to the task object
     const task = {
-      
+      title: title,
+      description:description,
+      status: status,
+      id: generateTaskId()
     };
+    
     const newTask = createNewTask(task);
     if (newTask) {
       addTaskToUI(newTask);
