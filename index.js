@@ -102,18 +102,20 @@ function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
   const filteredTasks = tasks.filter(task => task.board === boardName);
 
-  // Ensure the column titles are set outside of this function or correctly initialized before this function runs
-
+  // Clear a previous task before displaying the new ones
   elements.columnDivs.forEach(column => {
     const status = column.getAttribute("data-status");
-    // Reset column content while preserving the column title
-    column.innerHTML = `<div class="column-head-div">
-                          <span class="dot" id="${status}-dot"></span>
-                          <h4 class="columnHeader">${status.toUpperCase()}</h4>
-                        </div>`;
+    const tasksContainer = column.querySelector(".tasks-container");
+    tasksContainer.innerHTML = '';
 
-    const tasksContainer = document.createElement("div");
-    column.appendChild(tasksContainer);
+
+    // Reset column content while preserving the column title
+    const columnHeadDiv = document.createElement("div");
+    columnHeadDiv.classList.add("column-head-div");  
+    columnHeadDiv.innerHTML = `<span class="dot" id="${status}-dot"></span>
+                          <h4 class="columnHeader">${status.toUpperCase()}</h4>`;
+    column.insertBefore(columnHeadDiv, tasksContainer)
+    
 
     filteredTasks.filter(task => task.status === status).forEach(task => { 
       const taskElement = document.createElement("div");
