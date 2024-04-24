@@ -285,23 +285,30 @@ function openEditTaskModal(task) {
 
  // Close the task modal upon click of Cancel button
  cancelEditBtn.addEventListener('click', () => toggleModal(false, elements.editTaskModal));
- 
+
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
 
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
-  
+  const updatedTitle = elements.editTaskTitleInput.value;
+  const updatedDescription = elements.editTaskDescInput.value;
+  const updatedStatus = elements.editSelectStatus.value;
 
   // Create an object with the updated task details
-
+  const updatedTask = {
+    id: taskId,
+    title: updatedTitle,
+    description: updatedDescription,
+    status: updatedStatus
+  };
 
   // Update task using a hlper functoin
- 
+  updateTask(updatedTask);
 
   // Close the modal and refresh the UI to reflect the changes
-
+  toggleModal(false, elements.editTaskModal);
   refreshTasksUI();
 }
 
