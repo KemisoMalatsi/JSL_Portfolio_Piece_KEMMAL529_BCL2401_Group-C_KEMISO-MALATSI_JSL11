@@ -239,7 +239,7 @@ function addTask(event) {
       status: status,
       id: generateTaskId()
     };
-    
+
     const newTask = createNewTask(task);
     if (newTask) {
       addTaskToUI(newTask);
@@ -263,19 +263,32 @@ function toggleTheme() {
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
-  
+  elements.editTaskTitleInput.value = task.title;
+  elements.editTaskDescInput.value = task.description;
+  elements.editSelectStatus.value = task.status;
 
   // Get button elements from the task modal
-
+  const saveChangesBtn = document.getElementById("save-task-changes-btn");
+  const deleteTaskBtn = document.getElementById("delete-task-btn");
+  const cancelEditBtn = document.getElementById("cancel-edit-btn");
 
   // Call saveTaskChanges upon click of Save Changes button
- 
+ saveChangesBtn.addEventListener('click', function(){
+  saveTaskChanges(task);
+ });
 
   // Delete task using a helper function and close the task modal
+  deleteTaskBtn.addEventListener('click', function(){
+  deleteTask(task);
+  toggleModal(false, elements.editTaskModal)
+ });
 
-
+ // Close the task modal upon click of Cancel button
+ cancelEditBtn.addEventListener('click', () => toggleModal(false, elements.editTaskModal));
+ 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
+
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
