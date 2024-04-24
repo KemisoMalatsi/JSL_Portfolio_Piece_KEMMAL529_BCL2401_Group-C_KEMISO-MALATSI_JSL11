@@ -18,8 +18,43 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
+      // Navigation Sidebar 
 
-}
+      sideBarDiv: document.getElementById("side-bar-div"),
+      logo: document.getElementById("side-logo-div"),
+      boardsNavLinksDiv: document.getElementById("boards-nav-links-div"),
+      toggleSwitch: document.getElementById("switch"),
+      hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
+      showSideBarBtn: document.getElementById("show-side-bar-btn"),
+
+      // Main elements
+      headerBoardName: document.getElementById("header-board-name"),
+      addNewTaskButton: document.getElementById("add-new-task-btn"),
+      editBoardButton: document.getElementById("edit-board-btn"),
+      editBoardDiv: document.getElementById("editBoardDiv"),
+
+      // Task column elements
+      todoColumn: document.querySelector('.column-div[data-status="todo"]'),
+      doingColumn: document.querySelector('.column-div[data-status="doing"]'),
+      doneColumn: document.querySelector('.column-div[data-status="done"]'),
+
+      // New task modal elements
+      newTaskModalWindow:document.getElementById("new-task-modal-window"),
+      titleInput: document.getElementById("title-input"),
+      descInput: document.getElementById("desc-input"),
+      selectStatus: document.getElementById("select-status"),
+
+      // Edit task for modal elements 
+      editTaskModalWindow: document.querySelector(".edit-task-modal-window"),
+      editTaskTitleInput: document.getElementById("edit-task-title-input"),
+      editTaskDescInput: document.getElementById("edit-task-desc-input"),
+      editSelectStatus: document.getElementById("edit-select-status"),
+
+      // Filter elements 
+      filterDiv: document.getElementById("filterDiv"),
+};
+
+// console.log(elements); 
 
 let activeBoard = ""
 
